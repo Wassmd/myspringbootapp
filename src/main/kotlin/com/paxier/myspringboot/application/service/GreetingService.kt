@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service
 
 @Service
 class GreetingService: GreetingServicePort {
-    override fun greetPolitely(name: String): String = "Hello, $name!"
+    override fun greetPolitely(name: String): String = "Hello $name!"
 }

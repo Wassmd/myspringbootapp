@@ -28,20 +28,18 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	runtimeOnly("com.h2database:h2")
 	runtimeOnly("org.postgresql:postgresql")
 
-	//Logging
-	implementation("org.slf4j:slf4j-api:2.0.9")
-	implementation("org.slf4j:jul-to-slf4j:2.0.9")
-
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-
 	testImplementation("com.tngtech.archunit:archunit-junit5-api:$archUnitVersion")
 	testImplementation("com.tngtech.archunit:archunit-junit5-engine:$archUnitVersion")
 	testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
 	testImplementation("org.assertj:assertj-core")
 	testImplementation("io.mockk:mockk:$mockkVersion")
+	testImplementation("com.ninja-squad:springmockk:3.0.1")
+	testImplementation("io.kotest:kotest-runner-junit5-jvm:5.8.0")
 }
 
 tasks.withType<KotlinCompile> {
@@ -53,4 +51,12 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+sourceSets {
+	test {
+		java {
+			setSrcDirs(listOf("src/test/intg", "src/test/unit"))
+		}
+	}
 }
