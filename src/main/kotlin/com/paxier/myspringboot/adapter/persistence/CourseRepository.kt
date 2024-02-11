@@ -2,7 +2,6 @@ package com.paxier.myspringboot.adapter.persistence
 
 import com.paxier.myspringboot.application.port.out.CourseRepositoryPort
 import com.paxier.myspringboot.domain.api.Course
-import org.springframework.stereotype.Repository
 import org.springframework.stereotype.Service
 
 @Service

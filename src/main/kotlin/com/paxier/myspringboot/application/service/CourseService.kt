@@ -1,6 +1,5 @@
 package com.paxier.myspringboot.application.service
 
-import com.paxier.myspringboot.adapter.persistence.CourseRepository
 import com.paxier.myspringboot.application.port.`in`.CourseServicePort
 import com.paxier.myspringboot.application.port.out.CourseRepositoryPort
 import com.paxier.myspringboot.domain.api.Course
