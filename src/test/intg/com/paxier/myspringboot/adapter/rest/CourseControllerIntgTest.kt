@@ -100,4 +100,20 @@ class CourseControllerIntgTest  {
         response!!.size shouldBe 4
         response shouldBe courses.map { it.toDomain() }
     }
+
+    @Test
+    fun `get all courses by name`() {
+        // When
+        val response = webTestClient.get()
+            .uri("/api/courses?courseName=kotlin")
+            .exchange()
+            .expectStatus().isOk
+            .expectBodyList(Course::class.java)
+            .returnResult()
+            .responseBody
+
+        // Then
+        response!!.size shouldBe 2
+        response shouldBe courses.map { it.toDomain() }.filter { it.name.contains("kotlin", ignoreCase = true)}
+    }
 }
