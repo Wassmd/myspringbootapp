@@ -8,4 +8,8 @@ import org.springframework.stereotype.Service
 class CourseRepository(private val courseJpaRepository: CourseJpaRepository): CourseRepositoryPort {
     override fun save(course: Course): Course =
         courseJpaRepository.save(course.toEntity()).toDomain()
+
+    override fun findAll(): List<Course> = courseJpaRepository.findAll().map { it.toDomain() }
+    override fun findByName(name: String): List<Course> =
+        courseJpaRepository.findByNameContainsIgnoreCase(name).map { it.toDomain() }
 }

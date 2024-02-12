@@ -17,11 +17,9 @@ class CourseRepositoryIntgTest {
     @Autowired
     lateinit var courseJpaRepository: CourseJpaRepository
 
-    var courses: List<CourseEntity> = emptyList()
-
     @BeforeEach
     fun setup() {
-        courses = listOf(
+        val courses = listOf(
             CourseEntity(1, "java", "programming"),
             CourseEntity(2, "iOS", "programming"),
             CourseEntity(3, "kotlin", "programming"),

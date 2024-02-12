@@ -16,4 +16,8 @@ class CourseController(private val courseService: CourseServicePort) {
     @ResponseStatus(CREATED)
     fun createCourse(@RequestBody @Valid body: Course): Course =
         courseService.createCourse(body)
+
+    @GetMapping
+    fun getAllCourses(@RequestParam courseName: String?): List<Course> =
+        courseService.getAllCourses(courseName)
 }

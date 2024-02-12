@@ -1,9 +1,12 @@
 package com.paxier.myspringboot.adapter.rest
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.paxier.myspringboot.adapter.persistence.CourseJpaRepository
 import com.paxier.myspringboot.domain.api.Course
+import com.paxier.myspringboot.domain.entities.CourseEntity
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -19,6 +22,21 @@ class CourseControllerIntgTest  {
 
     @Autowired
     lateinit var objectMapper: ObjectMapper
+
+    @Autowired
+    lateinit var courseJpaRepository: CourseJpaRepository
+
+    var courses: List<CourseEntity> = emptyList()
+    @BeforeEach
+    fun setup() {
+        courses = listOf(
+            CourseEntity(1, "java", "programming"),
+            CourseEntity(2, "iOS", "programming"),
+            CourseEntity(3, "kotlin", "programming"),
+            CourseEntity(4, "Advanced kotlin", "programming")
+        )
+        courseJpaRepository.saveAll(courses)
+    }
 
     @Test
     fun `course created and returned with 201 status code`() {
@@ -65,5 +83,21 @@ class CourseControllerIntgTest  {
         responseSpec.expectStatus().isBadRequest
         responseSpec.expectBody()
             .jsonPath("$.message").isEqualTo("Validation failed for object='course'. Error count: 1")
+    }
+
+    @Test
+    fun `get all courses`() {
+        // When
+        val response = webTestClient.get()
+            .uri("/api/courses")
+            .exchange()
+            .expectStatus().isOk
+            .expectBodyList(Course::class.java)
+            .returnResult()
+            .responseBody
+
+        // Then
+        response!!.size shouldBe 4
+        response shouldBe courses.map { it.toDomain() }
     }
 }
