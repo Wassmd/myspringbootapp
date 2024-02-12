@@ -42,4 +42,28 @@ class CourseControllerIntgTest  {
         response.name shouldBe "Kotlin"
         response.category shouldBe "Programming"
     }
+
+    @Test
+    fun `bad request for missing name`() {
+        //given
+        val course = """
+            {
+                "name": "",
+                "category": "Programming"
+            }
+        """
+
+        //when
+        val responseSpec = webTestClient
+            .post()
+            .uri("/api/courses")
+            .contentType(MediaType.APPLICATION_JSON)
+            .bodyValue(course)
+            .exchange()
+
+        //then
+        responseSpec.expectStatus().isBadRequest
+        responseSpec.expectBody()
+            .jsonPath("$.message").isEqualTo("Validation failed for object='course'. Error count: 1")
+    }
 }
