@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ValueSource
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import java.util.stream.Stream
@@ -30,7 +31,7 @@ class CourseRepositoryIntgTest {
 
 
     @ParameterizedTest
-    //@ValueSource(strings = ["java", "iOS", "kotlin"])
+    @ValueSource(strings = ["java", "iOS", "kotlin"])
     @CsvSource(value = ["java, 1", "iOS, 1", "kotlin, 2"])
     fun `query course by word containing name`(name: String, expectedSize: Int) {
         val courses = courseJpaRepository.findByNameContainsIgnoreCase(name)
@@ -55,7 +56,7 @@ class CourseRepositoryIntgTest {
         @JvmStatic
         fun courseAndSize() : Stream<Arguments> {
             return Stream.of(
-                Arguments.arguments("java", 1),
+            Arguments.arguments("java", 1),
                 Arguments.arguments("iOS", 1),
                 Arguments.arguments("Kotlin", 2)
             )
