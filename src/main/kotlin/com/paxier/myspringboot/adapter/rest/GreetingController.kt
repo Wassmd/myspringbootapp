@@ -1,6 +1,7 @@
 package com.paxier.myspringboot.adapter.rest
 
 import com.paxier.myspringboot.application.port.`in`.GreetingServicePort
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -21,20 +22,20 @@ class GreetingController(val greetingService: GreetingServicePort) {
         return ResponseEntity.ok(greetingMessage)
     }
 
-    companion object {
-        val logger = LoggerFactory.getLogger(GreetingController::class.java)
-    }
-
     @GetMapping
     @RequestMapping("/api/mappings/{customerId}")
-    fun getReweId(@PathVariable(value = "customerId") customerId: String): IdDto {
-        logger.info("Reweid for customer: $customerId")
+    fun getUniqueId(@PathVariable(value = "customerId") customerId: String): IdDto {
+        logger.info("uniqueId for customer: $customerId")
 
         sleep(20000)
         return IdDto("1234")
     }
 
     data class IdDto(
-        val reweID: String,
+        val uniqueId: String,
     )
+
+    companion object {
+        private val logger: Logger = LoggerFactory.getLogger(GreetingController::class.java)
+    }
 }

@@ -8,4 +8,7 @@ import org.springframework.stereotype.Service
 @Service
 class InstructorService(private val instructorRepository: InstructorRepositoryPort): InstructorServicePort {
     override fun createInstructor(instructor: Instructor) = instructorRepository.save(instructor)
+    override fun findInstructorId(id: Long): Instructor? {
+        TODO("Not yet implemented")
+    }
 }

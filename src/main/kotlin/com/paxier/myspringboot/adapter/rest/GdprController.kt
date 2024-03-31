@@ -8,18 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class EventsController {
+class GdprController {
     @PostMapping
-    @RequestMapping("/{apiKey}/events/users/{pushId}")
+    @RequestMapping("/{apiKey}/gdpr/request")
     fun postEvent(
         @PathVariable apiKey: String,
-        @PathVariable pushId: String,
         @RequestBody body: String,
     ): BatchTokenResponse {
 
         logger.info("Request body: $body")
-        Thread.sleep(8000)
-        logger.info("token delivered")
+        Thread.sleep(11000)
+        logger.info("gdpr delivered")
         return BatchTokenResponse("some-token")
     }
 
