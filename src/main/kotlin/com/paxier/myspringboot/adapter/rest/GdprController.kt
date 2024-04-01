@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
+@RequestMapping("/{apiKey}/gdpr/request")
 class GdprController {
     @PostMapping
-    @RequestMapping("/{apiKey}/gdpr/request")
     fun postEvent(
         @PathVariable apiKey: String,
         @RequestBody body: String,

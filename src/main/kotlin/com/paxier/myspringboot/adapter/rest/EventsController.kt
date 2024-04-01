@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
+@RequestMapping("/{apiKey}/events/users/{pushId}")
 class EventsController {
     @PostMapping
-    @RequestMapping("/{apiKey}/events/users/{pushId}")
     fun postEvent(
         @PathVariable apiKey: String,
         @PathVariable pushId: String,
