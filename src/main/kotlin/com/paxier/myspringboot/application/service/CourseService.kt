@@ -12,7 +12,7 @@ class CourseService(
     private val instructorService: InstructorServicePort
     ) : CourseServicePort {
     override fun createCourse(course: Course): Course {
-        val instructor = instructorService.findInstructorId(course.instructor!!.id!!)
+//        val instructor = instructorService.findInstructorId(course.instructor!!.id!!)
         return courseRepository.save(course)
     }
 

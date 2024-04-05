@@ -9,9 +9,9 @@ data class Course(
     @field:NotBlank(message = " Course name is mandatory")
     val name: String,
     val category: String,
-    val instructor: Instructor?
+    var instructor: Instructor? = null
 
 ) {
-    fun toInstructorEntity() = InstructorEntity(instructor!!.id, instructor.name)
-    fun toEntity(): CourseEntity = CourseEntity(id, name, category, toInstructorEntity())
+    fun toInstructorEntity() = InstructorEntity(instructor!!.id, instructor!!.name)
+    fun toEntity(): CourseEntity = CourseEntity(id, name, category, instructor?.let { toInstructorEntity() } )
 }

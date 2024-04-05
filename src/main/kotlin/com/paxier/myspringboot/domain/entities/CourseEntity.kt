@@ -17,9 +17,9 @@ data class CourseEntity(
     val category: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "INSTRUCTOR_ID", nullable = false)
+    @JoinColumn(name = "INSTRUCTOR_ID", nullable = true)
     val instructor: InstructorEntity? = null
 
 ) {
-    fun toDomain(): Course = Course(id, name, category, instructor!!.toDomain())
+    fun toDomain(): Course = Course(id, name, category, instructor?.toDomain())
 }
