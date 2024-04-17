@@ -25,3 +25,5 @@ server:
     include-stacktrace: never
     include-message: always
     include-binding-errors: always
+  compression:
+    enabled: true
