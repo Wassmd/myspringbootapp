@@ -5,4 +5,5 @@ import com.paxier.myspringboot.domain.api.Instructor
 interface InstructorServicePort {
     fun createInstructor(instructor: Instructor): Instructor
     fun findInstructorId(id: Long): Instructor?
+    fun getAllInstructor(): List<Instructor>
 }

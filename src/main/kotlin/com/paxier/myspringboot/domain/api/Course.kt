@@ -1,7 +1,6 @@
 package com.paxier.myspringboot.domain.api
 
 import com.paxier.myspringboot.domain.entities.CourseEntity
-import com.paxier.myspringboot.domain.entities.InstructorEntity
 import jakarta.validation.constraints.NotBlank
 
 data class Course(
@@ -9,9 +8,9 @@ data class Course(
     @field:NotBlank(message = " Course name is mandatory")
     val name: String,
     val category: String,
-    var instructor: Instructor? = null
+    var instructorId: Long?
 
 ) {
-    fun toInstructorEntity() = InstructorEntity(instructor!!.id, instructor!!.name)
-    fun toEntity(): CourseEntity = CourseEntity(id, name, category, instructor?.let { toInstructorEntity() } )
+    fun toEntity(instructor: Instructor?): CourseEntity =
+        CourseEntity(id, name, category, instructor?.toEntity() )
 }

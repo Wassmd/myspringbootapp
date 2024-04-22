@@ -21,5 +21,5 @@ data class CourseEntity(
     val instructor: InstructorEntity? = null
 
 ) {
-    fun toDomain(): Course = Course(id, name, category, instructor?.toDomain())
+    fun toDomain(): Course = Course(id, name, category, instructor?.id)
 }

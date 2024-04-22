@@ -5,7 +5,12 @@ import com.paxier.myspringboot.domain.api.Instructor
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus.CREATED
 import org.springframework.validation.annotation.Validated
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.ResponseStatus
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api/instructors")
@@ -17,7 +22,8 @@ class InstructorController(private val instructorService: InstructorServicePort)
     fun createInstructor(@RequestBody @Valid body: Instructor): Instructor =
         instructorService.createInstructor(body)
 
-//    @GetMapping
-//    fun getAllCourses(@RequestParam courseName: String?): List<Course> =
-//        instructorService.getAllCourses(courseName)
+    @GetMapping
+    fun getAllInstructor(): List<Instructor> =
+        instructorService.getAllInstructor()
+
 }

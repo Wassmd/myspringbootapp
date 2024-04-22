@@ -1,5 +1,6 @@
 package com.paxier.myspringboot.application.service
 
+import com.paxier.myspringboot.application.exception.InstructorNotFoundException
 import com.paxier.myspringboot.application.port.`in`.CourseServicePort
 import com.paxier.myspringboot.application.port.`in`.InstructorServicePort
 import com.paxier.myspringboot.application.port.out.CourseRepositoryPort
@@ -12,8 +13,12 @@ class CourseService(
     private val instructorService: InstructorServicePort
     ) : CourseServicePort {
     override fun createCourse(course: Course): Course {
-//        val instructor = instructorService.findInstructorId(course.instructor!!.id!!)
-        return courseRepository.save(course)
+        val instructor = course.instructorId?.let { instructorService.findInstructorId(it) }
+        if (instructor == null) {
+           throw InstructorNotFoundException("Instructor not valid: ${course.instructorId}")
+        }
+
+        return courseRepository.save(course, instructor)
     }
 
     override fun getAllCourses(courseName: String?): List<Course> {
