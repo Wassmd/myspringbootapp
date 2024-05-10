@@ -21,7 +21,7 @@ class CourseControllerUnitTest {
     @Test
     fun `bad request for missing name`() {
         //given
-        every {  courseService.createCourse(any()) } returns Course(null,"dummy", "dummy")
+        every {  courseService.createCourse(any()) } returns Course(null,"dummy", "dummy", 1)
         val body = "{\n" +
                 "            \"name\": \"\",\n" +
                 "            \"category\": \"Programming\"\n" +

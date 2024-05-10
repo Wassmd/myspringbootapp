@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.paxier.myspringboot.adapter.persistence.CourseJpaRepository
 import com.paxier.myspringboot.domain.api.Course
 import com.paxier.myspringboot.domain.entities.CourseEntity
+import com.paxier.myspringboot.testcontainers.ContainerInitializer
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.BeforeEach
@@ -16,7 +17,7 @@ import org.springframework.test.web.reactive.server.WebTestClient
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
-class CourseControllerIntgTest  {
+class CourseControllerIntgTest: ContainerInitializer()  {
     @Autowired
     lateinit var webTestClient: WebTestClient
 
@@ -41,7 +42,7 @@ class CourseControllerIntgTest  {
     @Test
     fun `course created and returned with 201 status code`() {
         // Given
-        val course = Course(null, "Kotlin", "Programming")
+        val course = Course(null, "Kotlin", "Programming", 1)
         val body = objectMapper.writeValueAsString(course)
 
         // When

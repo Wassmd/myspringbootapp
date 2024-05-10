@@ -1,6 +1,7 @@
 package com.paxier.myspringboot.adapter.persistence
 
 import com.paxier.myspringboot.domain.entities.CourseEntity
+import com.paxier.myspringboot.testcontainers.ContainerInitializer
 import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
@@ -9,11 +10,13 @@ import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import java.util.stream.Stream
 
 @DataJpaTest
-class CourseRepositoryIntgTest {
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+class CourseRepositoryIntgTest : ContainerInitializer() {
 
     @Autowired
     lateinit var courseJpaRepository: CourseJpaRepository
@@ -54,7 +57,7 @@ class CourseRepositoryIntgTest {
 
     companion object {
         @JvmStatic
-        fun courseAndSize() : Stream<Arguments> {
+        fun courseAndSize(): Stream<Arguments> {
             return Stream.of(
             Arguments.arguments("java", 1),
                 Arguments.arguments("iOS", 1),

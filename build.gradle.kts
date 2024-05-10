@@ -9,11 +9,8 @@ plugins {
 }
 
 group = "com.paxier"
-version = "0.0.1-SNAPSHOT"
+java.sourceCompatibility = JavaVersion.VERSION_21
 
-java {
-	sourceCompatibility = JavaVersion.VERSION_17
-}
 
 val archUnitVersion = "1.2.1"
 val junitVersion = "5.10.1"
@@ -22,6 +19,8 @@ val mockkVersion = "1.13.8"
 repositories {
 	mavenCentral()
 }
+
+extra["testContainerVersion"] = "1.19.7"
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -46,6 +45,11 @@ dependencies {
 	testImplementation("io.mockk:mockk:$mockkVersion")
 	testImplementation("com.ninja-squad:springmockk:3.0.1")
 	testImplementation("io.kotest:kotest-runner-junit5-jvm:5.8.0")
+
+	//test containers
+	testImplementation ("org.testcontainers:junit-jupiter")
+	testImplementation ("org.testcontainers:postgresql:1.19.7")
+
 }
 
 tasks.withType<KotlinCompile> {
