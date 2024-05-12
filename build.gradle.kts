@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.paxier"
-java.sourceCompatibility = JavaVersion.VERSION_21
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 
 val archUnitVersion = "1.2.1"
@@ -34,9 +34,19 @@ dependencies {
 	//api doc
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.4.0")
 
-//	runtimeOnly("com.h2database:h2")
+	// Circuit breaker
+	implementation("io.github.resilience4j:resilience4j-spring-boot2:2.2.0")
+
+	// database
+	//	runtimeOnly("com.h2database:h2")
 	runtimeOnly("org.postgresql:postgresql")
 
+	// Spring Boot Actuator dependencies
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("io.micrometer:micrometer-core")
+	implementation("io.micrometer:micrometer-registry-prometheus")
+
+	//Tests
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("com.tngtech.archunit:archunit-junit5-api:$archUnitVersion")
 	testImplementation("com.tngtech.archunit:archunit-junit5-engine:$archUnitVersion")

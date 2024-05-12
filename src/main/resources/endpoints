@@ -3,3 +3,5 @@ curl http://localhost:8080/api/greetings?name=Wasim
 
 # H2 db UI
 http://localhost:8080/h2-console/login.jsp
+
+http://localhost:8081/admin/prometheus

@@ -37,3 +37,22 @@ server:
     include-binding-errors: always
   compression:
     enabled: true
+management:
+  endpoints:
+    web:
+      base-path: /admin
+      exposure:
+        include: health, prometheus
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      courses-circuit-breaker:
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5s
+        maxWaitDurationInHalfOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 5
+        minimumNumberOfCalls: 5
+        slidingWindowSize: 20
+        slidingWindowType: COUNT_BASED
+        automaticTransitionFromOpenToHalfOpenEnabled: true
