@@ -1,3 +1,3 @@
 # myspringbootapp
 
-a demo project with Spring MVC with Postgres
+a demo project with Spring MVC + Kotlin + Postgres + Hexagonal Architecture
