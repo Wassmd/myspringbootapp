@@ -10,5 +10,5 @@ services:
       - POSTGRES_PASSWORD=myspringboot
       - POSTGRES_DB=my_springboot_db
     ports:
-      - "5432:5432"
+      - "5442:5432"
 
