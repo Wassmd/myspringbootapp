@@ -6,11 +6,12 @@ plugins {
 	kotlin("jvm") version "1.9.21"
 	kotlin("plugin.jpa") version "1.9.22"
 	kotlin("plugin.spring") version "1.9.21"
+	application
+	idea
 }
 
 group = "com.paxier"
-java.sourceCompatibility = JavaVersion.VERSION_17
-
+java.sourceCompatibility = JavaVersion.VERSION_21
 
 val archUnitVersion = "1.2.1"
 val junitVersion = "5.10.1"
@@ -38,8 +39,8 @@ dependencies {
 	implementation("io.github.resilience4j:resilience4j-spring-boot2:2.2.0")
 
 	// database
-	//	runtimeOnly("com.h2database:h2")
-	runtimeOnly("org.postgresql:postgresql")
+	runtimeOnly("com.h2database:h2")
+//	runtimeOnly("org.postgresql:postgresql")
 
 	// Spring Boot Actuator dependencies
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -65,7 +66,7 @@ dependencies {
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs += "-Xjsr305=strict"
-		jvmTarget = "17"
+		jvmTarget = "21"
 	}
 }
 

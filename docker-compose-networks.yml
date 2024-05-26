@@ -1,0 +1,29 @@
+version: "3.1"
+
+services:
+
+  ###postgres
+  postgre:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=myspringboot
+      - POSTGRES_PASSWORD=myspringboot
+      - POSTGRES_DB=my_springboot_db
+    ports:
+      - 5432:5432
+    networks:
+      - local-test-network
+
+  myspringbootapp-server:
+    container_name: my-spring-boot-app
+    build:
+      context: docker-my-spring-boot-app
+      dockerfile: Dockerfile
+    image: my-spring-boot-app:latest
+    ports:
+      - 8081:8081
+    networks:
+      - local-test-network
+networks:
+  local-test-network:
+    driver: bridge
