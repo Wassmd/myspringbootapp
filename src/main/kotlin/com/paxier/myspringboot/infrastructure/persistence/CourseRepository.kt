@@ -3,9 +3,10 @@ package com.paxier.myspringboot.infrastructure.persistence
 import com.paxier.myspringboot.application.port.out.CourseRepositoryPort
 import com.paxier.myspringboot.domain.api.Course
 import com.paxier.myspringboot.domain.api.Instructor
-import org.springframework.stereotype.Service
+import org.springframework.stereotype.Repository
 
-@Service
+
+@Repository
 class CourseRepository(private val courseJpaRepository: CourseJpaRepository): CourseRepositoryPort {
     override fun save(course: Course, instructor: Instructor?): Course =
         courseJpaRepository.save(course.toEntity(instructor)).toDomain()

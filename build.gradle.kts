@@ -40,7 +40,6 @@ dependencies {
 
 	// database
 	runtimeOnly("com.h2database:h2")
-//	runtimeOnly("org.postgresql:postgresql")
 
 	// Spring Boot Actuator dependencies
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -59,7 +58,9 @@ dependencies {
 
 	//test containers
 	testImplementation ("org.testcontainers:junit-jupiter")
-	testImplementation ("org.testcontainers:postgresql:1.19.7")
+	testImplementation("org.testcontainers:postgresql:1.20.1")
+	testImplementation("com.github.dasniko:testcontainers-keycloak:3.4.0")
+	runtimeOnly("org.postgresql:postgresql")
 
 }
 

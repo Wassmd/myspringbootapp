@@ -6,7 +6,7 @@ LABEL authors="wassmd@gmail.com"
 
 COPY build/libs/myspringboot.jar opt/paxier/app.jar
 
-EXPOSE 8081
+EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar","opt/paxier/app.jar"]
 

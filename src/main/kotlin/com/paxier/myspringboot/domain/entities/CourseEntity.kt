@@ -12,7 +12,8 @@ import jakarta.persistence.Table
 @Entity
 @Table(name = "course")
 data class CourseEntity(
-    @Id @GeneratedValue val id: Long?,
+    @Id @GeneratedValue
+    val id: Long?,
     val name: String,
     val category: String,
 

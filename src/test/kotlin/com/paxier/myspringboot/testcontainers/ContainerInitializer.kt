@@ -9,7 +9,7 @@ import org.testcontainers.utility.DockerImageName
 @Testcontainers
 abstract class ContainerInitializer {
     companion object {
-        private val postgresDB = PostgreSQLContainer<Nothing>(DockerImageName.parse("postgres:13-alpine"))
+        private val postgresDB = PostgreSQLContainer<Nothing>(DockerImageName.parse("postgres:17-alpine"))
             .apply {
                 withDatabaseName("testdb")
                 withUsername("test")

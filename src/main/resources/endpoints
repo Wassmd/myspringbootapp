@@ -1,11 +1,14 @@
-curl http://localhost:8081/api/greetings
-curl http://localhost:8081/api/greetings?name=Wasim
+curl http://localhost:8080/api/greetings
+curl http://localhost:8080/api/greetings?name=Wasim
 
 # H2 db UI
-http://localhost:8081/h2-console/login.jsp
+http://localhost:8080/h2-console
 
 #Promethues
-http://localhost:8081/admin/prometheus
+http://localhost:8080/admin/prometheus
+
+#docker build
+docker build -t my-spring-boot-app:latest .
 
 #docker run
-docker run -it -p 8081:8081  my-spring-boot-app:latest
+docker run -it -p 8080:8080 my-spring-boot-app:latest
