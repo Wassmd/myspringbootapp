@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myspringbootapp
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+       app: myspringbootapp
+  template:
+    metadata:
+      labels:
+        app: myspringbootapp
+    spec:
+      containers:
+        - name: myspringbootapp
+          image: wassmd/myspringbootapp:latest
